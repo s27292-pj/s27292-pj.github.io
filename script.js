@@ -34,13 +34,13 @@ function zad3(a) {
     console.log(arr);
 }
 
-function zad4(n) { // do naprawienia
-    if (n < 2) {
-        console.log(n);
-        return n;
-    } else {
-        console.log(n);
-        return zad4(n - 1) + zad4(n - 2);
+function zad4(n) {
+    let n1 = 0 , n2 = 1 , np;
+    for (let i = 1; i <= n; i++){
+        console.log(n1);
+        np = n1 + n2;
+        n1 = n2;
+        n2 = np;
     }
 }
 
@@ -202,17 +202,23 @@ class Student {
     hello(){
         console.log('Witaj ' + this.imie + ' ' + this.nazwisko +', Twoja średnia ocen to: ' + this.srednia);
     }
-    set oceny(ocena){
-        if (ocena instanceof Ocena){
+    set oceny(ocena) {
+        if (ocena instanceof Ocena) {
             this.oceny.push(ocena);
         }
+        this.przeliczsrednia();
     }
     przeliczsrednia(){
         var sum = 0;
-        oceny.forEach(element => {
-            sum += element;
+        this.oceny.forEach(element => {
+            sum += element.wartosc;
         });
         this.srednia = sum/this.oceny.length;
+    }
+    get get_ocenyy(){
+        this.oceny.forEach((ocena) => {
+            console.log(ocena);
+        })
     }
 }
 
@@ -222,3 +228,6 @@ class Ocena {
         this.wartosc = wartosc;
     }
 }
+
+var s = new Student('daniel','bielinski')
+var polski = new Ocena('polski',5)
